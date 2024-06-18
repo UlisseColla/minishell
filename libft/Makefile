@@ -1,28 +1,112 @@
-FLAGS:= -Wall -Werror -Wextra
+NAME = libft.a
 
-NAME:= libft.a
+CC = gcc
 
-FILES-1:= ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint ft_strlen ft_memset ft_bzero ft_memcpy ft_memmove ft_strlcpy ft_strlcat ft_toupper ft_tolower ft_strchr ft_strrchr ft_strncmp ft_memchr ft_memcmp ft_strnstr ft_atoi ft_atol ft_atoi_base ft_calloc ft_strdup
-FILES-2:= ft_substr ft_strjoin ft_strtrim ft_split ft_itoa ft_strmapi ft_striteri ft_putchar_fd ft_putstr_fd ft_putendl_fd ft_putnbr_fd
+CFLAGS = -Wall -Wextra -Werror
 
-OBJECTS-1:= $(patsubst %, %.o, $(FILES-1))
-OBJECTS-2:= $(patsubst %, %.o, $(FILES-2))
+RM = rm -f
+
+AR = ar rcs
+
+SRCS = ./ctype/ft_isalnum.c \
+	./ctype/ft_isalpha.c \
+	./ctype/ft_isascii.c \
+	./ctype/ft_isdigit.c \
+	./ctype/ft_isprint.c \
+	./ctype/ft_tolower.c \
+	./ctype/ft_toupper.c \
+	./ctype/ft_isspace.c \
+	./ft_fd/ft_putchar_fd.c \
+	./ft_fd/ft_putendl_fd.c \
+	./ft_fd/ft_putnbr_fd.c \
+	./ft_fd/ft_putnbrbase_fd.c \
+	./ft_fd/ft_putstr_fd.c \
+	./ft_fd/ft_putunsigned_fd.c \
+	./ft_fd/ft_puthex_fd.c \
+	./ft_fd/ft_putptr_fd.c \
+	./ft_fd/ft_putfloat_fd.c \
+	./gnl/ft_get_next_line.c \
+	./gnl/ft_get_all_lines.c \
+	./list/ft_lstadd_back.c \
+	./list/ft_lstadd_front.c \
+	./list/ft_lstclear.c \
+	./list/ft_lstdelone.c \
+	./list/ft_lstiter.c \
+	./list/ft_lstlast.c \
+	./list/ft_lstmap.c \
+	./list/ft_lstnew.c \
+	./list/ft_lstsize.c \
+	./mem/ft_bzero.c \
+	./mem/ft_memchr.c \
+	./mem/ft_memcmp.c \
+	./mem/ft_memcpy.c \
+	./mem/ft_memmove.c \
+	./mem/ft_memset.c \
+	./not_standard/ft_itoa.c \
+	./not_standard/ft_split.c \
+	./not_standard/ft_substr.c \
+	./not_standard/ft_uitoa.c \
+	./not_standard/ft_issign.c \
+	./not_standard/ft_free_matrix.c \
+	./not_standard/ft_free_arrays.c \
+	./not_standard/ft_exit_error.c \
+	./not_standard/ft_open_file.c \
+	./not_standard/ft_free_n.c \
+	./not_standard/ft_check_format.c \
+	./not_standard/ft_htoul.c \
+	./not_standard/ft_isspace_all.c \
+	./not_standard/ft_printmatrix_fd.c \
+	./not_standard/ft_free.c \
+	./not_standard/ft_matdup.c \
+	./stdlib/ft_atoi.c \
+	./stdlib/ft_strict_atoi.c \
+	./stdlib/ft_calloc.c \
+	./string/ft_strchr.c \
+	./string/ft_strdup.c \
+	./string/ft_striteri.c \
+	./string/ft_freejoin.c \
+	./string/ft_strjoin.c \
+	./string/ft_strlcat.c \
+	./string/ft_strlcpy.c \
+	./string/ft_strlen.c \
+	./string/ft_strmapi.c \
+	./string/ft_strncmp.c \
+	./string/ft_strnstr.c \
+	./string/ft_strrchr.c \
+	./string/ft_strtrim.c \
+	./string/ft_freejoin_char.c \
+	./ft_printf/ft_printf.c \
+	./bit_flag/bit_flag.c \
+	./bit_flag/count_flag.c \
+	./bit_flag/reset_flag.c
+
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
-	
-$(NAME):
-	cc $(FLAGS) -c $(patsubst %, %.c, $(FILES-1)) $(patsubst %, %.c, $(FILES-2))
-	ar -rc $(NAME) $(OBJECTS-1) $(OBJECTS-2)
-	ranlib $(NAME)
 
-clean: 
-	rm -f $(patsubst %, %.o, $(FILES-1)) $(patsubst %, %.o, $(FILES-2))
+$(NAME): $(OBJS)
+	$(info )
+	$(AR) $(NAME) $(OBJS)
+	$(info ${BOLD}Creating  -> ${YELLOW}$(NAME)${NO_COLOR})
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@ -I../include
+
+clean:
+	$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 
 .PHONY: all clean fclean re bonus
-
 .SILENT:
+
+header:
+	${info }
+	${info ${BOLD}${YELLOW}LIBFT${NO_COLOR}}
+
+YELLOW		:= ${shell tput setaf 3}
+NO_COLOR	:= ${shell tput sgr0}
+BOLD		:= ${shell tput bold}
