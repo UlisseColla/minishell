@@ -67,6 +67,7 @@ This will generate the valgrind's suppression file for the readline. Then run:
 ```bash
 valgrind --suppressions=supp/supp.supp ./minishell
 ```
+HAVE EVEN MORE FUN!
 
 
 ## Contributing
