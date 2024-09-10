@@ -1,3 +1,6 @@
+![evaluation_grade](./minishell_grade_github.png)
+
+
 :fire: MINI_HELL :fire:
 
 ## Summary
