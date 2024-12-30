@@ -6,7 +6,7 @@
 /*   By: ulissecolla <ulissecolla@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:34:53 by fzucconi          #+#    #+#             */
-/*   Updated: 2024/12/30 20:49:13 by ulissecolla      ###   ########.fr       */
+/*   Updated: 2024/12/30 20:53:40 by ulissecolla      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	copy_single(char *expanded, char *str, int *j, int *i)
 	*j = tmp_j;
 }
 
-static char	*allocate(char **env, char *str)
+static char	*allocate(void)
 {
 	char	*ret;
 
@@ -49,7 +49,7 @@ char	*var_expansion(char **env, char *str, int i, int j)
 {
 	t_expand	expand;
 
-	expand = (t_expand){env, str, &i, &j, allocate(env, str), NULL};
+	expand = (t_expand){env, str, &i, &j, allocate(), NULL};
 	while (str[i])
 	{
 		if (str[i] == 39 && ft_strchr(&str[i + 1], 39))
