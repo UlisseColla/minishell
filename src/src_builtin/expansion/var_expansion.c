@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var_expansion.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucolla <ucolla@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ulissecolla <ulissecolla@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:34:53 by fzucconi          #+#    #+#             */
-/*   Updated: 2024/06/18 13:44:16 by ucolla           ###   ########.fr       */
+/*   Updated: 2024/12/30 20:49:13 by ulissecolla      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ static void	copy_single(char *expanded, char *str, int *j, int *i)
 
 static char	*allocate(char **env, char *str)
 {
-	int		n;
 	char	*ret;
 
-	n = var_allocate(str, env) + 2;
 	ret = ft_calloc(4096, sizeof(char));
 	return (ret);
 }
